@@ -1,0 +1,43 @@
+version: '3'
+
+services: 
+    consulserver01:   
+        image: consul:1.10
+        container_name: consulserver01
+        hostname: consulserver01
+        command: ['tail', '-f', '/dev/null']
+        volumes: 
+            - ./servers/server01:/etc/consul.d
+        ports:
+            - "8500:8500"
+
+    consulserver02:   
+        image: consul:1.10
+        container_name: consulserver02
+        hostname: consulserver02
+        command: ['tail', '-f', '/dev/null']
+        volumes: 
+            - ./servers/server02:/etc/consul.d
+    consulserver03:   
+        image: consul:1.10
+        container_name: consulserver03
+        hostname: consulserver03
+        command: ['tail', '-f', '/dev/null']
+        volumes: 
+            - ./servers/server03:/etc/consul.d
+    
+    consulclient01:   
+        image: consul:1.10
+        container_name: consulclient01
+        hostname: consulclient01
+        command: ['tail', '-f', '/dev/null']
+        volumes: 
+            - ./clients/consul01:/etc/consul.d
+
+    consulclient02:   
+        image: consul:1.10
+        container_name: consulclient02
+        hostname: consulclient02
+        command: ['tail', '-f', '/dev/null']
+        volumes: 
+            - ./clients/consul02:/etc/consul.d
